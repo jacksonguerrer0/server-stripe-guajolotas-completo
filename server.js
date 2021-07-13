@@ -37,12 +37,12 @@ app.post('/create-checkout-session', async (req, res) => {
             price_data: {
               currency: 'mxn',
               product_data: {
-                name: product.flavor,
-                images: [product.image_main],
+                name: product.nombre,
+                images: [product.imagen],
               },
-              unit_amount: product.price*100,
+              unit_amount: product.precio*100,
             },
-            quantity: product.quantity,
+            quantity: product.cantidad,
           }
 
         arrayProducts.push(lineProduct);
