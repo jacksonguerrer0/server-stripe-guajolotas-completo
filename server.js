@@ -19,6 +19,13 @@ app.use((req, res, next) => {
 
 const DOMAIN = config.APP_DOMAIN;
 
+app.get('/', async (req, res) => {
+
+  console.log('Recibí la petición')
+  res.json({ mensaje: "Hola" });
+
+})
+
 app.post('/create-checkout-session', async (req, res) => {
 
     let products = req.body.products;
