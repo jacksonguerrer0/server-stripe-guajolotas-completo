@@ -1,4 +1,5 @@
-const stripe = require('stripe')('sk_test_51JBNpCINIjbITmoITPhLMJNRsys6qNeSWbnROJeFwDfIhQJTVO6I8HT0w9xVKBo26fWkrQeWrD2PdzztI4an4arN00S7cHcR1q');
+const config = require('./config.js');
+const stripe = require('stripe')(config.SECRET_KEY);
 const express = require('express');
 const app = express();
 app.use(express.static('.'));
@@ -14,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 
-const DOMAIN = "http://localhost:3000";
+const DOMAIN = config.APP_DOMAIN;
 
 app.post('/create-checkout-session', async (req, res) => {
 
@@ -37,7 +38,6 @@ app.post('/create-checkout-session', async (req, res) => {
 
         arrayProducts.push(lineProduct);
     });
-    console.log(arrayProducts)
 
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
